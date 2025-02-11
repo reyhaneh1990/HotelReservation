@@ -21,10 +21,10 @@ public class AppConfig {
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         //setDriverClassName: درایور JDBC برای پایگاه‌داده MySQL تنظیم شده است.
         //
-        // URL پایگاه‌داده مشخص شده است.  پایگاه‌داده ای با‌ MySQL روی localhost و پورت 3306 با نام hotel_reservation استفاده شده است.
+        // URL پایگاه‌داده مشخص شده است.  پایگاه‌داده ای با MySQL روی localhost و پورت 3306 با نام hotel_reservation استفاده شده است.
         dataSource.setUrl("jdbc:mysql://localhost:3306/hotel_db");
         dataSource.setUsername("root");
-        dataSource.setPassword("password");
+        dataSource.setPassword("asd123!@#");
         return dataSource;
     }
 

@@ -77,36 +77,44 @@ public class ErrorControllerAspect {
 //بدنه‌ی پاسخ (response): همان Mapی که ساخته‌ایم و شامل وضعیت، کد، پیام، و جزئیات خطاها است.
 //کد وضعیت HTTP (HttpStatus.BAD_REQUEST): مقدار 400 که نشان‌دهنده‌ی یک درخواست نامعتبر است.
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-
+//این بخش خطاهای مربوط به IllegalArgumentException را مدیریت می‌کند. این خطا معمولاً زمانی رخ می‌دهد که ورودی‌های نامعتبر به متد یا تابع ارسال می‌شوند.
         } catch (IllegalArgumentException ex) {
+            //این خط پیام خطا را در لاگ‌ها ثبت می‌کند. اطلاعاتی مانند نام متد (joinPoint.getSignature().getName()) و پیام خطا (ex.getMessage()) در لاگ ذخیره می‌شوند.
             log.error("Invalid argument in {} - {}",
                     joinPoint.getSignature().getName(),
                     ex.getMessage()
             );
-
+//یک شیء Map ایجاد می‌شود که حاوی اطلاعات خطا است
             Map<String, Object> response = new HashMap<>();
+            //وضعیت خطا (ERROR).
             response.put("status", "ERROR");
+            //کد وضعیت HTTP (در اینجا 400 Bad Request).
             response.put("code", HttpStatus.BAD_REQUEST.value());
+            //پیام خطا که از ex.getMessage() گرفته می‌شود.
             response.put("message", ex.getMessage());
-
+//یک پاسخ HTTP با کد وضعیت 400 Bad Request و بدنه‌ی حاوی اطلاعات خطا (response) به کلاینت بازگردانده می‌شود.
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-
+//این بخش خطاهای عمومی و غیرمنتظره (Exception) را مدیریت می‌کند. این خطاها معمولاً خطاهایی هستند که پیش‌بینی نشده‌اند.
         } catch (Exception ex) {
+            //این خط پیام خطا را در لاگ‌ها ثبت می‌کند. علاوه بر نام متد و پیام خطا، خود شیء خطا (ex) نیز برای جزئیات بیشتر در لاگ ذخیره می‌شود.
             log.error("Unexpected error in {} - {}",
                     joinPoint.getSignature().getName(),
                     ex.getMessage(),
                     ex
             );
-
+//یک شیء Map ایجاد می‌شود که حاوی اطلاعات خطا است:
             Map<String, Object> response = new HashMap<>();
+            //وضعیت خطا (ERROR).
             response.put("status", "ERROR");
+            //کد وضعیت HTTP (در اینجا 500 Internal Server Error).
             response.put("code", HttpStatus.INTERNAL_SERVER_ERROR.value());
+            //یک پیام کلی خطا (An unexpected error occurred).
             response.put("message", "An unexpected error occurred");
-
+//اگر حالت دیباگ (debug) فعال باشد، پیام خطا (ex.getMessage()) نیز به پاسخ اضافه می‌شود. این کار برای کمک به توسعه‌دهندگان در تشخیص مشکل است.
             if (log.isDebugEnabled()) {
                 response.put("debug_message", ex.getMessage());
             }
-
+//یک پاسخ HTTP با کد وضعیت 500 Internal Server Error و بدنه‌ی حاوی اطلاعات خطا (response) به کلاینت بازگردانده می‌شود.
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
