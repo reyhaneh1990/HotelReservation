@@ -44,7 +44,7 @@ public class BookingRepository {
     @Transactional
     //این متد یک رزرو جدید را به جدول booking اضافه می‌کند.
     public void addBookings(Date bookingDate, Date checkInDate, Date checkOutDate, Long customerId, Long roomId, Long paymentId) {
-        String sql = "INSERT INTO booking (bookingDate,checkInDate,checkOutDate,customer_id,room_id,payment_id) VALUES (?, ?, ?, ?,?,?)";
+        String sql = "INSERT INTO bookings (bookingDate,checkInDate,checkOutDate,customer_id,room_id,payment_id) VALUES (?, ?, ?, ?,?,?)";
         //این متد کوئری SQL را اجرا می‌کند و مقادیر bookingDate, checkInDate, checkOutDate, customerId, roomId و paymentId را به عنوان پارامترهای کوئری ارسال می‌کند.
         jdbcTemplate.update(sql,
                 bookingDate,
@@ -59,7 +59,7 @@ public class BookingRepository {
     @Transactional
     //این متد اطلاعات یک رزرو موجود را در جدول booking به‌روزرسانی می‌کند.
     public void editBooking(Date bookingDate, Date checkInDate, Date checkOutDate) {
-        String sql = "UPDATE booking SET bookingDate=?, checkInDate=?, checkOutDate=? WHERE id=?";
+        String sql = "UPDATE bookings SET bookingDate=?, checkInDate=?, checkOutDate=? WHERE id=?";
         //این متد کوئری SQL را اجرا می‌کند و مقادیر bookingDate, checkInDate و checkOutDate را به عنوان پارامترهای کوئری ارسال می‌کند.
         jdbcTemplate.update(sql,
                 bookingDate,
@@ -71,7 +71,7 @@ public class BookingRepository {
     @Transactional
     //این متد یک رزرو را از جدول booking حذف می‌کند.
     public void deleteBooking(Long id) {
-        String sql = "DELETE from booking WHERE id=?";
+        String sql = "DELETE from bookings WHERE id=?";
         //این متد کوئری SQL را اجرا می‌کند و مقدار id را به عنوان پارامتر کوئری ارسال می‌کند.
         jdbcTemplate.update(sql,
                 id);
@@ -81,7 +81,7 @@ public class BookingRepository {
     @Transactional
     //این متد اطلاعات یک رزرو را بر اساس id از جدول booking بازیابی می‌کند.
     public Bookings getBooking(Long id) {
-        String sql = "SELECT * FROM booking WHERE id = ?";
+        String sql = "SELECT * FROM bookings WHERE id = ?";
         //این متد کوئری SQL را اجرا می‌کند و نتیجه را به یک شیء Bookings نگاشت می‌کند.
         return jdbcTemplate.queryForObject(sql, bookingsRowMapper, id);
     }
@@ -90,7 +90,7 @@ public class BookingRepository {
 //
 //jdbcTemplate.query: این متد کوئری SQL را اجرا می‌کند و نتایج را به لیستی از اشیاء Bookings نگاشت می‌کند.
     public List<Bookings> getAllBookings() {
-        String sql = "SELECT * FROM booking";
+        String sql = "SELECT * FROM bookings";
         return jdbcTemplate.query(sql, bookingsRowMapper);
     }
 

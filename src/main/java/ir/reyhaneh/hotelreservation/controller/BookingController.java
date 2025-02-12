@@ -15,13 +15,13 @@ import java.util.List;
 // مشخص می‌کند که این کلاس یک کنترلر است و خروجی آن به صورت JSON یا XML به کلاینت ارسال می‌شود.
 @RestController
 // آدرس پایه (Base URL) برای تمام APIهای این کنترلر را تعیین می‌کند. در اینجا /booking/ است.
-@RequestMapping(name = "/booking/")
+@RequestMapping(path = "/booking/")
 public class BookingController {
     //این خط یک نمونه از BookingService را به عنوان وابستگی به کنترلر تزریق می‌کند.
     private final BookingService bookingService;
 
     //این متد با یک درخواست GET به آدرس /booking/ فراخوانی می‌شود
-    @GetMapping
+    @GetMapping("/")
     //تمام رزروهای موجود را از طریق bookingService.getAllBookings() دریافت می‌کند و به کلاینت برمی‌گرداند.
     public List<Bookings> getAllBooking() {
         return bookingService.getAllBookings();

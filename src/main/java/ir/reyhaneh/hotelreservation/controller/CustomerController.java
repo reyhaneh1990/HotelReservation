@@ -15,14 +15,14 @@ import java.util.List;
 //مشخص می‌کند که این کلاس یک کنترلر RESTful است و تمام خروجی‌ها به صورت JSON یا XML برگردانده می‌شوند.
 @RestController
 //: این annotation مشخص می‌کند که تمام endpointهای این کنترلر با پیشوند /customer/ شروع می‌شوند.
-@RequestMapping(name = "/customer/")
+@RequestMapping(path = "/customer/")
 
 public class CustomerController {
     //این فیلد یک نمونه از CustomerService است که برای انجام عملیات مربوط به مشتریان استفاده می‌شود.
     private final CustomerService customerService;
 
     //این annotation مشخص می‌کند که این متد به درخواست‌های GET پاسخ می‌دهد.
-    @GetMapping
+    @GetMapping("/")
     //این متد تمام مشتریان را از طریق customerService.getAllCustomers() دریافت می‌کند و به صورت لیستی از شیء‌های Customers برمی‌گرداند.
     public List<Customers> getAllCustomers() {
         return customerService.getAllCustomers();

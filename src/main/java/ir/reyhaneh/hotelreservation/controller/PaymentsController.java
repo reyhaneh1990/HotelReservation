@@ -18,13 +18,13 @@ import java.util.List;
 //مشخص می‌کند که این کلاس یک کنترلر RESTful است و تمام خروجی‌ها به صورت JSON یا XML برگردانده می‌شوند.
 @RestController
 //این annotation مشخص می‌کند که تمام endpointهای این کنترلر با پیشوند /payments/ شروع می‌شوند.
-@RequestMapping(name = "/payments/")
+@RequestMapping(path = "/payments/")
 public class PaymentsController {
     //این فیلد یک نمونه از PaymentsService است که برای انجام عملیات مربوط به پرداخت‌ها استفاده می‌شود. این فیلد از طریق سازنده (constructor) به کنترلر تزریق می‌شود
     private final PaymentsService paymentsService;
 
     //این annotation مشخص می‌کند که این متد به درخواست‌های GET پاسخ می‌دهد.
-    @GetMapping
+    @GetMapping("/")
     //این متد تمام پرداخت‌ها را از طریق paymentsService.getAllPayments() دریافت می‌کند و به صورت لیستی از شیء‌های Payments برمی‌گرداند.
     public List<Payments> getAllPayments() {
         return paymentsService.getAllPayments();

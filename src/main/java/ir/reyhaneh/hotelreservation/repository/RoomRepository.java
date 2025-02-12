@@ -43,7 +43,7 @@ public class RoomRepository {
     @Transactional
     //این متد یک اتاق جدید را به جدول room اضافه می‌کند.
     public void addRoom(String type, String status, Long price) {
-        String sql = "INSERT INTO room (type, status, price) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO rooms (type, status, price) VALUES (?, ?, ?)";
         //این متد کوئری SQL را اجرا می‌کند و مقادیر type, status و price را به عنوان پارامترهای کوئری ارسال می‌کند.
         jdbcTemplate.update(sql,
                 type,
@@ -55,7 +55,7 @@ public class RoomRepository {
     @Transactional
     //این متد اطلاعات یک اتاق موجود را در جدول room به‌روزرسانی می‌کند.
     public void editRoom(Long id, String type, String status, Long price) {
-        String sql = "UPDATE room SET type = ?, status = ?, price = ? WHERE id=?";
+        String sql = "UPDATE rooms SET type = ?, status = ?, price = ? WHERE id=?";
         //این متد کوئری SQL را اجرا می‌کند و مقادیر type, status, price و id را به عنوان پارامترهای کوئری ارسال می‌کند.
         jdbcTemplate.update(sql,
                 type,
@@ -68,7 +68,7 @@ public class RoomRepository {
     @Transactional
     //این متد یک اتاق را از جدول room حذف می‌کند.
     public void deleteRoom(Long id) {
-        String sql = "DELETE from room WHERE id=?";
+        String sql = "DELETE from rooms WHERE id=?";
         //این متد کوئری SQL را اجرا می‌کند و مقدار id را به عنوان پارامتر کوئری ارسال می‌کند.
         jdbcTemplate.update(sql,
                 id);
@@ -78,14 +78,14 @@ public class RoomRepository {
     @Transactional
     //این متد اطلاعات یک اتاق را بر اساس id از جدول room بازیابی می‌کند.
     public Rooms getRoom(Long id) {
-        String sql = "SELECT * FROM Room WHERE id = ?";
+        String sql = "SELECT * FROM rooms WHERE id = ?";
         //این متد کوئری SQL را اجرا می‌کند و نتیجه را به یک شیء Rooms نگاشت می‌کند.
         return jdbcTemplate.queryForObject(sql, RoomRowMapper, id);
     }
 
     //این متد لیستی از تمام اتاق‌ها را از جدول room بازیابی می‌کند
     public List<Rooms> getAllRoom() {
-        String sql = "SELECT * FROM Room";
+        String sql = "SELECT * FROM rooms";
         //این متد کوئری SQL را اجرا می‌کند و نتایج را به لیستی از اشیاء Rooms نگاشت می‌کند.
         return jdbcTemplate.query(sql, RoomRowMapper);
     }

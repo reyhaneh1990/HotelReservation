@@ -14,14 +14,14 @@ import java.util.List;
 //مشخص می‌کند که این کلاس یک کنترلر RESTful است و تمام خروجی‌ها به صورت JSON یا XML برگردانده می‌شوند.
 @RestController
 //پایه‌ی URL برای تمام endpointهای این کنترلر را تعیین می‌کند. در اینجا، تمام درخواست‌ها باید با /room/ شروع شوند.
-@RequestMapping(name = "/room/")
+@RequestMapping(path = "/room/")
 
 public class RoomController {
     //این خط یک نمونه از RoomService را به عنوان یک فیلد نهایی (final) تعریف می‌کند. این فیلد از طریق constructor (که توسط @AllArgsConstructor ایجاد شده) مقداردهی می‌شود.
     private final RoomService roomService;
 
     //این annotation مشخص می‌کند که این متد به درخواست‌های GET پاسخ می‌دهد.
-    @GetMapping
+    @GetMapping("/")
     //لیستی از تمام اتاق‌ها را برمی‌گرداند.
     public List<Rooms> getAllRoom() {
         return roomService.getAllRooms();

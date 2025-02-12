@@ -42,7 +42,7 @@ public class AdditionalServiceRepository {
 //این متد یک سرویس اضافی جدید را به جدول additionalService اضافه می‌کند.
     @Transactional
     public void addAdditionalService(String name, Long price) {
-        String sql = "INSERT INTO additionalService (name,price) VALUES (?, ?)";
+        String sql = "INSERT INTO additional_service (name,price) VALUES (?, ?)";
         //این متد کوئری SQL را اجرا می‌کند و مقادیر name و price را به عنوان پارامترهای کوئری ارسال می‌کند.
         jdbcTemplate.update(sql,
                 name,
@@ -53,7 +53,7 @@ public class AdditionalServiceRepository {
 //این متد اطلاعات یک سرویس اضافی موجود را در جدول additionalService به‌روزرسانی می‌کند.
     @Transactional
     public void editAdditionalService(String name, Long price) {
-        String sql = "UPDATE additionalService SET name=?, price=? WHERE id=?";
+        String sql = "UPDATE additional_service SET name=?, price=? WHERE id=?";
         //این متد کوئری SQL را اجرا می‌کند و مقادیر name و price را به عنوان پارامترهای کوئری ارسال می‌کند.
         jdbcTemplate.update(sql,
                 name,
@@ -64,7 +64,7 @@ public class AdditionalServiceRepository {
 //این متد یک سرویس اضافی را از جدول additionalService حذف می‌کند.
     @Transactional
     public void deleteC(Long id) {
-        String sql = "DELETE from additionalService WHERE id=?";
+        String sql = "DELETE from additional_service WHERE id=?";
         //این متد کوئری SQL را اجرا می‌کند و مقدار id را به عنوان پارامتر کوئری ارسال می‌کند.
         jdbcTemplate.update(sql,
                 id);
@@ -74,14 +74,14 @@ public class AdditionalServiceRepository {
 //این متد اطلاعات یک سرویس اضافی را بر اساس id از جدول additionalService بازیابی می‌کند.
     @Transactional
     public AdditionalService getAdditionalService(Long id) {
-        String sql = "SELECT * FROM additionalService WHERE id = ?";
+        String sql = "SELECT * FROM additional_service WHERE id = ?";
         //این متد کوئری SQL را اجرا می‌کند و نتیجه را به یک شیء AdditionalService نگاشت می‌کند.
         return jdbcTemplate.queryForObject(sql, additionalServiceRowMapper, id);
     }
 
     //این متد لیستی از تمام سرویس‌های اضافی را از جدول additionalService بازیابی می‌کند.
     public List<AdditionalService> getAllAdditionalService() {
-        String sql = "SELECT * FROM additionalService";
+        String sql = "SELECT * FROM additional_service";
         //این متد کوئری SQL را اجرا می‌کند و نتایج را به لیستی از اشیاء AdditionalService نگاشت می‌کند.
         return jdbcTemplate.query(sql, additionalServiceRowMapper);
     }
