@@ -51,7 +51,7 @@ public class CustomerController {
     }
 
     //این متد به درخواست‌های DELETE پاسخ می‌دهد و پارامتر id را از URL دریافت می‌کند
-    @DeleteMapping("{id}")
+    @DeleteMapping("delete/{id}")
     //این متد یک مشتری را بر اساس id از طریق customerService.deleteCustomer(id) حذف می‌کند.
     public void deleteCustomer(@PathVariable Long id) {
         customerService.deleteCustomer(id);

@@ -23,7 +23,6 @@ public class BookingController {
     //این متد با یک درخواست GET به آدرس /booking/ فراخوانی می‌شود
     @GetMapping
     //تمام رزروهای موجود را از طریق bookingService.getAllBookings() دریافت می‌کند و به کلاینت برمی‌گرداند.
-
     public List<Bookings> getAllBooking() {
         return bookingService.getAllBookings();
     }

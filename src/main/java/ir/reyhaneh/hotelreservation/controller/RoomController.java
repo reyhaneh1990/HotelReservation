@@ -52,7 +52,7 @@ public class RoomController {
     }
 
     //این متد به درخواست‌های DELETE پاسخ می‌دهد و پارامتر id را از URL دریافت می‌کند.
-    @DeleteMapping("{id}")
+    @DeleteMapping("delete/{id}")
     //مقدار id از URL استخراج می‌شود.
     public void deleteRoom(@PathVariable Long id) {
         //متدی از سرویس است که یک اتاق را بر اساس id از دیتابیس حذف می‌کند.
